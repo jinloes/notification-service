@@ -61,6 +61,20 @@ public class AnnouncementControllerTest {
                 .isNotNull();
     }
 
+    @Test
+    public void testSendToUser() throws InterruptedException, ExecutionException, TimeoutException {
+
+        StompSession stompSession = stompClient.connect(url, new StompSessionHandlerAdapter() {
+        }).get(1, SECONDS);
+
+        stompSession.subscribe("/topic/message/123", new AnnouncementFrameHandler());
+        stompSession.send("/app/message/123", new OutputMessage("hi!"));
+        OutputMessage gameStateAfterMove = completableFuture.get(5, SECONDS);
+
+        assertThat(gameStateAfterMove)
+                .isNotNull();
+    }
+
 
     private List<Transport> createTransportClient() {
         List<Transport> transports = new ArrayList<>(1);
