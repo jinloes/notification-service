@@ -1,6 +1,0 @@
-logging:
-  level:
-    root: INFO
-
-kafka:
-  bootstrapAddress: localhost:9092

@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package notification_service;
+
+option java_package = "com.jinloes.notification_service";
+option java_multiple_files = true;
+
+message Notification {
+  string text = 1;
+  string userId = 2;
+}
+
+message NotificationResponse {
+  bool success = 1;
+  string errorMessage = 2;
+}
+
+service NotificationService {
+  rpc send(Notification) returns (NotificationResponse) {};
+}
