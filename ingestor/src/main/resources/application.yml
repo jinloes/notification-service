@@ -3,4 +3,4 @@ logging:
     root: INFO
 
 kafka:
-  bootstrapAddress: localhost:19092
+  bootstrapAddress: kafka:9092
